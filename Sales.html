@@ -2,88 +2,110 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>شاشة المبيعات والكاشير</title>
     <style>
-        body { font-family: Arial, sans-serif; padding: 20px; background-color: #f8f9fa; text-align: center; }
-        .container { display: flex; justify-content: space-around; flex-wrap: wrap; margin-top: 30px; }
-        .products-section { width: 50%; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .cart-section { width: 40%; background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-top: 5px solid #28a745; }
-        .product-btn { padding: 15px 25px; font-size: 18px; margin: 10px; border: none; border-radius: 8px; cursor: pointer; color: white; font-weight: bold; transition: 0.2s; }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .nav-header {
+            width: 100%;
+            max-width: 800px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .btn-back {
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .main-title { margin-top: 15px; color: #333; }
+        .subtitle { color: #666; font-size: 14px; }
+        .content-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            width: 100%;
+            max-width: 800px;
+            justify-content: center;
+        }
+        .box {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            flex: 1;
+            min-width: 280px;
+            text-align: center;
+        }
+        .products-box { border-top: 4px solid #007bff; }
+        .invoice-box { border-top: 4px solid #28a745; }
+        .btn-prod {
+            display: inline-block;
+            width: 45%;
+            margin: 5px;
+            padding: 12px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
         .coffee { background-color: #6f4e37; }
-        .tea { background-color: #d63031; }
-        .water { background-color: #0984e3; }
-        .cake { background-color: #e84393; }
-        .product-btn:active { transform: scale(0.95); }
-        .total-box { font-size: 24px; color: #28a745; font-weight: bold; margin-top: 20px; border-top: 2px dashed #ccc; padding-top: 15px; }
-        .btn-back { padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 5px; text-decoration: none; display: inline-block; margin-bottom: 20px; }
-        ul { list-style: none; padding: 0; text-align: right; font-size: 18px; }
-        li { padding: 8px 0; border-bottom: 1px solid #eee; }
+        .tea { background-color: #dc3545; }
+        .water { background-color: #17a2b8; }
+        .cake { background-color: #e83e8c; }
+        .total-text { color: #28a745; font-size: 22px; font-weight: bold; margin: 20px 0; }
+        .btn-confirm {
+            background-color: #28a745;
+            color: white;
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 16px;
+        }
     </style>
 </head>
+<body>
 
+<div class="nav-header">
+    <a href="index.html" class="btn-back">📊 العودة للبوابة الرئيسية</a>
+    <h1 class="main-title">شاشة المبيعات والكاشير 🛒</h1>
+    <p class="subtitle">اضغطي على المنتجات لتسجيل الفاتورة وحساب الإجمالي فوراً</p>
+</div>
 
-    <!-- زر العودة لشاشة التحكم -->
-    <a href="./index.html" class="btn-blue">📊 العودة للبوابة الرئيسية</a>
-
-
-
-
-
-    <h1>شاشة المبيعات والكاشير 🛒</h1>
-    <p>اضغطي على المنتجات لتسجيل الفاتورة وحساب الإجمالي فوراً</p>
-
-    <div class="container">
-        <!-- قسم أزرار المنتجات -->
-        <div class="products-section">
-            <h3>المنتجات المتوفرة</h3>
-            <button class="product-btn coffee" onclick="addToCart('قهوة إسبريسو', 50)">☕ قهوة (50 ج.م)</button>
-            <button class="product-btn tea" onclick="addToCart('شاي أحمر', 20)">🫖 شاي (20 ج.م)</button>
-            <button class="product-btn water" onclick="addToCart('مياه معدنية', 10)">💧 مياه (10 ج.م)</button>
-            <button class="product-btn cake" onclick="addToCart('قطعة كيك', 40)">🍰 كيك (40 ج.م)</button>
-        </div>
-
-        <!-- قسم سلة المشتريات والفاتورة -->
-        <div class="cart-section">
-            <h3>الفاتورة الحالية 📄</h3>
-            <ul id="cart-list">
-                <!-- الأغراض المبيعة ستظهر هنا تلقائياً -->
-            </ul>
-            <div class="total-box">
-                الإجمالي: <span id="total-price">0</span> ج.م
-            </div>
-            <button class="product-btn" style="background-color: #28a745; width: 100%; margin-top: 15px;" onclick="checkout()">تأكيد عملية البيع ✔️</button>
-        </div>
+<div class="content-wrapper">
+    <!-- صندوق المنتجات -->
+    <div class="box products-box">
+        <h3>المنتجات المتوفرة</h3>
+        <button class="btn-prod coffee">☕ قهوة (50 ج.م)</button>
+        <button class="btn-prod tea">🍓 شاي (20 ج.م)</button>
+        <button class="btn-prod water">💧 مياه (10 ج.م)</button>
+        <button class="btn-prod cake">🍰 كيك (40 ج.م)</button>
     </div>
 
-    <!-- أكواد الربط البرمجي والحساب الذكي (JavaScript) -->
-    <script>
-        let total = 0;
-        const cartList = document.getElementById('cart-list');
-        const totalPrice = document.getElementById('total-price');
+    <!-- صندوق الفاتورة -->
+    <div class="box invoice-box">
+        <h3>الفاتورة الحالية 📄</h3>
+        <hr style="border: 0; border-top: 1px dashed #ccc;">
+        <div class="total-text">الإجمالي: 0 ج.م</div>
+        <button class="btn-confirm">تأكيد عملية البيع ✓</button>
+    </div>
+</div>
 
-        function addToCart(productName, price) {
-            // إضافة المنتج للقائمة المرئية
-            const li = document.createElement('li');
-            li.textContent = `• ${productName} - ${price} ج.م`;
-            cartList.appendChild(li);
-
-            // تحديث الحساب المالي الكلي
-            total += price;
-            totalPrice.textContent = total;
-        }
-
-        function checkout() {
-            if(total === 0) {
-                alert("السلة فارغة! الرجاء اختيار منتجات أولاً.");
-                return;
-            }
-            alert(`تمت عملية البيع بنجاح! الإجمالي: ${total} ج.م`);
-            // تفريغ السلة بعد البيع
-            cartList.innerHTML = '';
-            total = 0;
-            totalPrice.textContent = total;
-        }
-    </script>
 </body>
 </html>
+
  
