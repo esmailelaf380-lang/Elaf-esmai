@@ -2,17 +2,35 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>شاشة التحكم</title>
+    <title>شاشة التحكم والإحصائيات</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; background-color: #f4f4f9; }
-        .btn { padding: 15px 30px; font-size: 18px; background-color: #28a745; color: white; border: none; cursor: pointer; border-radius: 5px; text-decoration: none; }
+        body { font-family: Arial, sans-serif; padding: 20px; background-color: #f1f2f6; text-align: center; }
+        .nav-bar { display: flex; justify-content: center; gap: 15px; margin-bottom: 30px; }
+        .btn-nav { padding: 10px 20px; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; }
+        .btn-home { background-color: #747d8c; }
+        .btn-sales { background-color: #28a745; }
+        .dashboard-container { max-width: 600px; background: white; padding: 30px; margin: auto; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .stat-box { background: #eccc68; padding: 20px; border-radius: 8px; font-size: 20px; font-weight: bold; margin-top: 20px; color: #2f3542; }
     </style>
 </head>
 <body>
-    <h1>مرحباً بك في شاشة التحكم الرئيسة 📊</h1>
-    <p>من هنا يمكنك إدارة المنتجات والمبيعات.</p>
-    <br><br>
-    <!-- هذا هو زر الربط والانتقال لشاشة المبيعات -->
-    <a href="sales.html" class="btn">الانتقال إلى شاشة المبيعات 🛒</a>
+
+    <!-- شريط التنقل العلوي للربط بين الشاشات -->
+    <div class="nav-bar">
+        <a href="Index.html" class="btn-nav btn-home">🏠 البوابة الرئيسية</a>
+        <a href="Sales.html" class="btn-nav btn-sales">🛒 شاشة المبيعات</a>
+    </div>
+
+    <div class="dashboard-container">
+        <h1>📊 شاشة التحكم الإدارية</h1>
+        <p>مرحباً بكِ في لوحة المتابعة. هنا تظهر تقارير النظام.</p>
+        
+        <div class="stat-box">
+            📈 إجمالي مبيعات اليوم: 0 ج.م
+        </div>
+    </div>
+
 </body>
 </html>
+
+        
